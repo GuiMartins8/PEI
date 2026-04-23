@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sistema de Gestão | Refrigeração & Compromissos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="dashboard">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-top">
+            <div class="icon-logo">❄️</div>
+            <h1>Sistema de Gestão</h1>
+        </div>
+        <div class="subhead">Gerencie seus compromissos e equipamentos de refrigeração</div>
+    </div>
+
+    <!-- TABS (NAVEGAÇÃO) -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="agenda">📅 Agenda</button>
+            <button class="tab-btn" data-tab="equipamentos">🧊 Equipamentos</button>
+            <button class="tab-btn" data-tab="comunicacao">💬 Comunicação</button>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL - apenas agenda funcional -->
+    <div id="agendaContent" class="tab-content" style="display: block;">
+        <div class="main-grid">
+            <!-- COLUNA ESQUERDA: CALENDÁRIO -->
+            <div class="card">
+                <div class="calendar-header">
+                    <div class="month-year" id="monthYearDisplay">Abril 2026</div>
+                    <div class="nav-buttons">
+                        <button class="nav-btn" id="prevMonthBtn">←</button>
+                        <button class="nav-btn" id="nextMonthBtn">→</button>
+                    </div>
+                </div>
+                <div class="weekdays">
+                    <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+                </div>
+                <div id="calendarGrid" class="calendar-days"></div>
+                <button class="btn-new" id="newAppointmentBtn">+ Novo Compromisso</button>
+            </div>
+
+            <!-- COLUNA DIREITA: COMPROMISSOS -->
+            <div class="card">
+                <div class="compromissos-header">
+                    <span class="compromissos-title">Compromissos</span>
+                    <span class="badge-date" id="selectedDateBadge">—</span>
+                </div>
+                <div id="compromissosListContainer" class="compromissos-list">
+                    <div class="empty-message">Selecione uma data para ver compromissos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD RESUMO INFERIOR -->
+        <div class="resumo-card" id="resumoCard">
+            <div class="resumo-item"><span class="resumo-label">Total de compromissos</span><span class="resumo-valor" id="totalCount">0</span></div>
+            <div class="resumo-item"><span class="resumo-label">Compromissos do dia</span><span class="resumo-valor" id="dayCount">0</span></div>
+            <div class="resumo-item"><span class="resumo-label">Data selecionada</span><span class="resumo-valor" id="resumoData">—</span></div>
+        </div>
+    </div>
+
+    <!-- Conteúdo das outras abas (placeholders) -->
+    <div id="equipamentosContent" class="tab-content" style="display: none;">
+        <div class="card" style="text-align: center; padding: 3rem;">
+            <h3>🧊 Equipamentos de Refrigeração</h3>
+            <p style="margin-top: 1rem;">Em breve: Gestão de ativos, manutenção e alertas.</p>
+            <div style="margin-top: 2rem; background: #f8fafc; border-radius: 20px; padding: 1.5rem;">🔧 Compressores | Condensadores | Ventiladores</div>
+        </div>
+    </div>
+    <div id="comunicacaoContent" class="tab-content" style="display: none;">
+        <div class="card" style="text-align: center; padding: 3rem;">
+            <h3>💬 Central de Comunicação</h3>
+            <p style="margin-top: 1rem;">Notificações, alertas e chat técnico (integração futura).</p>
+            <div style="margin-top: 1.5rem;">📢 Envie mensagens para a equipe de campo.</div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL NOVO COMPROMISSO -->
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+        <h3>➕ Novo Compromisso</h3>
+        <label>Título</label>
+        <input type="text" id="modalTitle" placeholder="Ex: Revisão de equipamento" />
+        <label>Horário</label>
+        <input type="time" id="modalTime" value="10:00" />
+        <label>Descrição (opcional)</label>
+        <textarea id="modalDesc" rows="2" placeholder="Detalhes..."></textarea>
+        <label>Tag</label>
+        <select id="modalTag">
+            <option>Reunião</option>
+            <option>Pessoal</option>
+            <option>Manutenção</option>
+            <option>Urgente</option>
+        </select>
+        <div class="modal-actions">
+            <button class="btn-cancel" id="cancelModalBtn">Cancelar</button>
+            <button class="btn-save" id="saveModalBtn">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
